@@ -4154,7 +4154,9 @@ input[type="button"].btn-block {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 35px;
+  color:white;
+  background-color:#224459;
 }
 
 .navbar > .container,
@@ -10035,4 +10037,3 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
