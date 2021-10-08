@@ -20,7 +20,33 @@ namespace ClientConnecting.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<CarrouselIndex> CarrouselIndex = new List<CarrouselIndex>();
+            CarrouselIndex.Add(new CarrouselIndex()
+            {
+                Id = 1,
+                Title = "Some 1",
+                Img = "bannerImage1Formated.jpg"
+
+            });
+            
+            CarrouselIndex.Add(new CarrouselIndex()
+            {
+                Id = 2,
+                Title = "Some 2",
+                Img = "bannerImage2Formated.jpg"
+
+            });
+
+            CarrouselIndex.Add(new CarrouselIndex()
+            {
+                Id = 3,
+                Title = "Some 3",
+                Img = "bannerImage3Formated.jpg"
+
+            });
+
+
+            return View(CarrouselIndex);
         }
 
         public IActionResult Privacy()

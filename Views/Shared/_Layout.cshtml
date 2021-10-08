@@ -9,22 +9,32 @@
 </head>
 <body>
     <header>
-        <nav class="navbar ">
+        <nav class="navbar nav  justify-content-between">
+
             <a class="navbar-brand">ClientConnecting</a>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <div class="btn-group-vertical">
+                <button type="button" class="btn btn-primary  btn-sm">Registrar</button>
+                <button type="button" class="btn btn-secondary btn-sm">Login</button>
+            </div>
+            
+
+
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            
+            
             @RenderBody()
         </main>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
