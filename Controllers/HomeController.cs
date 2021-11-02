@@ -51,6 +51,13 @@ namespace ClientConnecting.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["email"] = "teste@gmail.com";
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            ViewData["email"] = "teste@gmail.com";
             return View();
         }
 
@@ -58,6 +65,11 @@ namespace ClientConnecting.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Search()
+        {
+            return View();
         }
     }
 }

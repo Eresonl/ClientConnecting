@@ -69,3 +69,26 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+/*Pagina Companies */
+
+.companies-section a {
+    text-decoration: none;
+}
+
+.card-shop {
+    border: 1px solid black;
+    border-radius: .8rem;
+    cursor: pointer;
+    transition: 700ms ease-in-out;
+    text-decoration: none;
+}
+
+.card-shop:hover {
+  background-color: #adb5bd;
+}
+
+.logo-main-page {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}

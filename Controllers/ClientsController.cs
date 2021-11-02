@@ -10,23 +10,25 @@ using ClientConnecting.Services;
 
 namespace ClientConnecting.Controllers
 {
-    public class ProductsController : Controller
+    public class ClientsController : Controller
     {
-        private readonly ProductService _productService;
+        private readonly ClientService _clientService;
         private readonly ClientConnectingContext _context;
-        public ProductsController(ProductService productService)
+
+        public ClientsController( ClientService clientService)
         {
-            _productService = productService;
+            _clientService = clientService;
         }
 
-        // GET: Products
+
+        // GET: Clients
         public IActionResult Index()
         {
-            var list = _productService.FindAll();
+            var list = _clientService.FindAll();
             return View(list);
         }
 
-        // GET: Products/Details/5
+        // GET: Clients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +36,34 @@ namespace ClientConnecting.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var client = await _context.Client
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
+            if (client == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(client);
         }
 
-        // GET: Products/Create
+        // GET: Clients/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Clients/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductType,ProductDescription")] Product product)
+        public IActionResult Create(Client client)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
+            _clientService.Insert(client);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Products/Edit/5
+        // GET: Clients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +71,22 @@ namespace ClientConnecting.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            var client = await _context.Client.FindAsync(id);
+            if (client == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(client);
         }
 
-        // POST: Products/Edit/5
+        // POST: Clients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductType,ProductDescription")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Cpf,Address,BirthDate")] Client client)
         {
-            if (id != product.Id)
+            if (id != client.Id)
             {
                 return NotFound();
             }
@@ -98,12 +95,12 @@ namespace ClientConnecting.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(client);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
+                    if (!ClientExists(client.Id))
                     {
                         return NotFound();
                     }
@@ -114,39 +111,41 @@ namespace ClientConnecting.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(client);
         }
 
-        // GET: Products/Delete/5
-        public IActionResult Delete(int? id)
+        // GET: Clients/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var obj = _productService.FindById(id.Value);
-            if(obj == null)
+            var client = await _context.Client
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (client == null)
             {
                 return NotFound();
             }
 
-
-            return View(obj);
+            return View(client);
         }
 
-        // POST: Products/Delete/5
-        [HttpPost]
+        // POST: Clients/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            _productService.Remove(id);
+            var client = await _context.Client.FindAsync(id);
+            _context.Client.Remove(client);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool ClientExists(int id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _context.Client.Any(e => e.Id == id);
         }
     }
 }

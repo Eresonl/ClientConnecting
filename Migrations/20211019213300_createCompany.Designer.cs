@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClientConnecting.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(ClientConnectingContext))]
     [Migration("20211019213300_createCompany")]
     partial class createCompany
     {
