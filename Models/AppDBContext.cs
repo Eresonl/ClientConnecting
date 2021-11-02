@@ -15,5 +15,7 @@ namespace ClientConnecting.Models
         public DbSet<Product> Product { get; set; }
 
         public DbSet<Company> Company { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
