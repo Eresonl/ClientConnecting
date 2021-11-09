@@ -28,20 +28,20 @@ namespace ClientConnecting.Controllers
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            var list = _companyService.FindAll();
+            var list = await _companyService.FindAllAsync();
             return View(list);
         }
 
         // GET: Companies/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
-            var products = _productService.
+/*            var products = _productService.
             if (id == null)
             {
                 return NotFound();
             }
-
-            var obj = _companyService.FindById(id.Value);
+*/
+            var obj = await _companyService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return NotFound();
@@ -51,9 +51,9 @@ namespace ClientConnecting.Controllers
         }
 
         // GET: Companies/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var categories = _categoryService.FindAll();
+            var categories = await _categoryService.FindAllAsync();
             var viewModel = new CompanyFormViewModel { Categories = categories };
             return View(viewModel);
         }
@@ -63,9 +63,9 @@ namespace ClientConnecting.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Company company)
+        public async Task<IActionResult> Create(Company company)
         {
-            _companyService.Insert(company);
+            await _companyService.InsertAsync(company);
             return RedirectToAction(nameof(Index));
         }
 
@@ -152,6 +152,12 @@ namespace ClientConnecting.Controllers
         private bool CompanyExists(int id)
         {
             return _context.Company.Any(e => e.Id == id);
+        }
+        public async Task<IActionResult> SimpleSearch(string name)
+        {
+            ViewData["SearchName"] = name;
+            var result = await _companyService.FindByNameAsync(name);
+            return View(result);
         }
     }
 }

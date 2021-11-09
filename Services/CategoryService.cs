@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientConnecting.Services
 {
@@ -15,9 +16,9 @@ namespace ClientConnecting.Services
             _context = context;
         }
 
-        public List<Category> FindAll()
+        public async Task<List<Category>> FindAllAsync()
         {
-            return _context.Category.OrderBy( cat => cat.Name).ToList();
+            return await _context.Category.OrderBy( cat => cat.Name).ToListAsync();
         }
     }
 }

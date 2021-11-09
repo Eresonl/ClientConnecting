@@ -20,9 +20,9 @@ namespace ClientConnecting.Controllers
         }
 
         // GET: Products
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _productService.FindAll();
+            var list = await _productService.FindAllAsync();
             return View(list);
         }
 
@@ -45,7 +45,7 @@ namespace ClientConnecting.Controllers
         }
 
         // GET: Products/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -118,14 +118,14 @@ namespace ClientConnecting.Controllers
         }
 
         // GET: Products/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if(id == null)
             {
                 return NotFound();
             }
 
-            var obj = _productService.FindById(id.Value);
+            var obj = await _productService.FindByIdAsync(id.Value);
             if(obj == null)
             {
                 return NotFound();
@@ -138,9 +138,9 @@ namespace ClientConnecting.Controllers
         // POST: Products/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _productService.Remove(id);
+            await _productService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 

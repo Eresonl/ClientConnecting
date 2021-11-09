@@ -45,6 +45,7 @@ namespace ClientConnecting.Data
             Category cat1 = new Category { Id = 126, Name = "Petshop" };
             Category cat2 = new Category { Id = 78, Name = "Varejo" };
             Category cat3 = new Category { Id = 96, Name = "Alimentação" };
+            Category cat4 = new Category { Id = 1321321, Name = "Bebidas" };
 
             _context.Company.AddRange(c1, c2, c3, c4, c5, c6);
             _context.Product.AddRange(p1, p2, p3, p4, p5, p6);

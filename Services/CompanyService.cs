@@ -16,24 +16,38 @@ namespace ClientConnecting.Services
             _context = context;
         }
 
-        public List<Company> FindAll()
+        public async Task<List<Company>> FindAllAsync()
         {
-            return _context.Company.OrderBy(obj => obj.Name).ToList();
+            return await _context.Company.OrderBy(obj => obj.Name).ToListAsync();
         }
 
-        public Company FindById(int id)
+        public async Task<Company> FindByIdAsync(int id)
         {
 
-            return _context.Company.Include(obj => obj.Product).FirstOrDefault(obj => obj.Id == id);
+            return await _context.Company.Include(obj => obj.Product).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Insert(Company obj)
+        public async Task InsertAsync(Company obj)
         {
             Random id = new Random();
 
             obj.Id = id.Next(200);
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+        }
+
+        public async  Task<List<Company>> FindByNameAsync(string name)
+        {
+            var result = from obj in _context.Company select obj;
+
+            if(!String.IsNullOrEmpty(name))
+            {
+                result = result.Where(x => x.Name!.Contains(name));
+
+            }
+            
+
+            return await result.ToListAsync();
         }
     }
 }

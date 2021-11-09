@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClientConnecting.Models;
 using ClientConnecting.Services;
+using System.Threading.Tasks;
 
 namespace ClientConnecting.Controllers
 {
@@ -22,9 +23,9 @@ namespace ClientConnecting.Controllers
 
 
         // GET: Clients
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _clientService.FindAll();
+            var list = await _clientService.FindAllAsync();
             return View(list);
         }
 
@@ -57,9 +58,9 @@ namespace ClientConnecting.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Client client)
+        public async Task<IActionResult> Create(Client client)
         {
-            _clientService.Insert(client);
+            await _clientService.InsertAsync(client);
             return RedirectToAction(nameof(Index));
         }
 

@@ -12,13 +12,15 @@ namespace ClientConnecting.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ClientConnectingContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ClientConnectingContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             List<CarrouselIndex> CarrouselIndex = new List<CarrouselIndex>();
             CarrouselIndex.Add(new CarrouselIndex()
@@ -49,25 +51,25 @@ namespace ClientConnecting.Controllers
             return View(CarrouselIndex);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
             ViewData["email"] = "teste@gmail.com";
             return View();
         }
 
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
             ViewData["email"] = "teste@gmail.com";
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Search()
+        public async Task<IActionResult> Search()
         {
             return View();
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientConnecting.Services
 {
@@ -15,30 +16,30 @@ namespace ClientConnecting.Services
             _context = context;
         }
 
-        public List<Product> FindAll()
+        public async Task<List<Product>> FindAllAsync()
         {
-            return _context.Product.ToList();
+            return await _context.Product.ToListAsync();
         }
 
-        public void Insert(Product obj)
+        public async Task InsertAsync(Product obj)
         {
             Random id = new Random();
 
             obj.Id = id.Next(200);
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Product FindById(int id)
+        public async Task<Product> FindByIdAsync(int id)
         {
-            return _context.Product.FirstOrDefault(obj => obj.Id == id);
+            return await _context.Product.FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
             var obj = _context.Product.Find(id);
             _context.Product.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
