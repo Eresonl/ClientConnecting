@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ClientConnecting.Models.Company>
+
+@{
+    ViewData["Title"] = "Empresas";
+}
+
+
+<div class="d-flex justify-content-center">
+    <h1>Empresas</h1>
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<section class="companies-section row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6">
+            <a asp-action="Details" asp-route-id="@item.Id">
+                <div class="card-shop d-flex align-items-center my-2 p-2">
+                    <div>
+                        <img class="logo-main-page rounded-3" src="~/Images/@Html.DisplayFor(modelItem => item.ImagemLogo)" alt="Imagem da Loja">
+                    </div>
+                    <div class="mx-3">
+                        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.Address)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</section>

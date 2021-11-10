@@ -1,3 +1,4 @@
+﻿using ClientConnecting.Data;
 using ClientConnecting.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClientConnecting.Services;
 
 namespace ClientConnecting
 {
@@ -25,19 +27,31 @@ namespace ClientConnecting
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDBContext>(options =>
+            services.AddDbContext<ClientConnectingContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddRazorPages();
+
             services.AddControllersWithViews();
+
+            services.AddDbContext<ClientConnectingContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ClientConnectingContext")));
+
+            services.AddScoped<SeedingService>();
+            services.AddScoped<CompanyService>();
+            services.AddScoped<ClientService>();
+            services.AddScoped<CategoryService>();
+            services.AddScoped<ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {
