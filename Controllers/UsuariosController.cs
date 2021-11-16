@@ -19,6 +19,7 @@ namespace ClientConnecting.Controllers
     {
 
         private readonly AppDBContext _context;
+        private bool isSenhaOk;
 
         public object BCrypt { get; private set; }
 
@@ -45,7 +46,7 @@ namespace ClientConnecting.Controllers
                 ViewBag.Message = "Usuário e/ou Senha inválidas!";
             }
 
-            //bool isSenhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, user.Senha);
+           bool isSenhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, user.Senha);
 
             if (isSenhaOk)
             {
@@ -129,7 +130,7 @@ namespace ClientConnecting.Controllers
         {
             if (ModelState.IsValid)
             {
-                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+               usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -169,7 +170,7 @@ namespace ClientConnecting.Controllers
             {
                 try
                 {
-                    usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                   usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
