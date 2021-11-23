@@ -2,35 +2,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>ClientConnecting</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> ClientConnecting</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar nav  justify-content-between">
-
-            <a class="navbar-brand">ClientConnecting</a>
+        <nav id="header" class="navbar nav justify-content-between">
+            <a class="title-link navbar-brand">ClientConnecting</a>
             <form class="form-inline" asp-controller="Companies" asp-action="SimpleSearch">
-                <input class="form-control mr-sm-2" type="text" name="name" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" name="name" placeholder="Buscar Empresas" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <div class="btn-group-vertical">
-                <a asp-controller="Home" asp-action="Register" class="btn btn-primary btn-sm">Registrar</a>
-                <button type="button" class="btn btn-primary  btn-sm">Registrar</button>
-                <button type="button" class="btn btn-secondary btn-sm">Login</button>
+            <div class="btn-group-vertical" id="btn-header-content">
+                <a asp-controller="Home" asp-action="Register" class="btn">Registrar</a>
+                <button type="button" class="btn">Login</button>
             </div>
-            
-
-
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            
-            
             @RenderBody()
         </main>
     </div>
