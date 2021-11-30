@@ -82,6 +82,9 @@ namespace ClientConnecting
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "teste",
+                    pattern: "/teste");
             });
         }
 
