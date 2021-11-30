@@ -127,6 +127,160 @@ body {
   object-fit: cover;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Pagina Register */
 
 #register-background {
@@ -137,35 +291,35 @@ body {
     left: 0;
 }
 
-#register-background h1 {
-    font-size: 48px;
-    color: var(--primary-color);
-}
+    #register-background h1 {
+        font-size: 48px;
+        color: var(--primary-color);
+    }
 
-#register-background span {
-    font-weight: 600;
-    font-size: 24px;
-    color: var(--primary-color);
-}
+    #register-background span {
+        font-weight: 600;
+        font-size: 24px;
+        color: var(--primary-color);
+    }
 
-#register-background li {
-    font-weight: 600;
-    font-size: 18px;
-    color: var(--light-blue);
-}
+    #register-background li {
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--light-blue);
+    }
 
-#register-background .button-style {
-    width: 260px;
-    background-color: var(--primary-color);
-    color: var(--light-blue);
-    font-weight: 600;
-    border: none;
-    transition: 500ms;
-}
+    #register-background .button-style {
+        width: 260px;
+        background-color: var(--primary-color);
+        color: var(--light-blue);
+        font-weight: 600;
+        border: none;
+        transition: 500ms;
+    }
 
-#register-background .button-style:hover {
-    background-color: var(--main-color);
-}
+        #register-background .button-style:hover {
+            background-color: var(--main-color);
+        }
 
 /*Register Form Style */
 #register-form h1 {
@@ -185,9 +339,9 @@ body {
     border: none;
 }
 
-#register-form .btn:hover {
-    background-color: var(--main-color) !important;
-}
+    #register-form .btn:hover {
+        background-color: var(--main-color) !important;
+    }
 
 /*Pagina Clientes da Empresa */
 
@@ -202,7 +356,6 @@ body {
 }
 
 #company-clients form {
-
 }
 
 #company-clients .btn {
@@ -212,9 +365,9 @@ body {
     border: none;
 }
 
-#company-clients .btn:hover {
-    background-color: var(--main-color) !important;
-}
+    #company-clients .btn:hover {
+        background-color: var(--main-color) !important;
+    }
 
 #company-clients #clients-list span {
     font-size: 18px;
@@ -227,23 +380,23 @@ body {
     cursor: pointer;
 }
 
-#company-clients #clients-list .client-card:nth-child(2n) {
-    background-color: var(--brilliant-blue);
-    transition: 500ms;
-}
+    #company-clients #clients-list .client-card:nth-child(2n) {
+        background-color: var(--brilliant-blue);
+        transition: 500ms;
+    }
 
-#company-clients #clients-list .client-card:nth-child(2n):hover {
-    background-color: var(--light-blue);
-}
+        #company-clients #clients-list .client-card:nth-child(2n):hover {
+            background-color: var(--light-blue);
+        }
 
-#company-clients #clients-list .client-card:nth-child(2n+1) {
-    background-color: var(--secondary-color);
-    transition: 500ms;
-}
+    #company-clients #clients-list .client-card:nth-child(2n+1) {
+        background-color: var(--secondary-color);
+        transition: 500ms;
+    }
 
-#company-clients #clients-list .client-card:nth-child(2n+1):hover {
-    background-color: var(--light-blue);
-}
+        #company-clients #clients-list .client-card:nth-child(2n+1):hover {
+            background-color: var(--light-blue);
+        }
 
 #company-clients .follow {
     color: var(--primary-color);
@@ -251,7 +404,7 @@ body {
     font-weight: 600;
 }
 
-#company-clients #client-data-table h6{
+#company-clients #client-data-table h6 {
     color: var(--primary-color);
     font-size: 24px;
     font-weight: 600;
