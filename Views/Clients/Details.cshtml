@@ -4,39 +4,53 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<section id="perfil-cliente">
-    <h4>Client</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpf)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cpf)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-    </dl>
+<section id="company-clients" class="container py-5">
+    <div class="col-12">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="">Bem vindo novamente, @Html.DisplayFor(model => model.Name)!</h1>
+        </div>
+        <div id="client-data-table">
+            <h6>Dados do Cliente</h6>
+            <div class="pt-2">
+                <span class="d-block">Endereço</span>
+                <span class="data-return">@Html.DisplayFor(model => model.Address)</span>
+            </div>
+            <div class="pt-2">
+                <span class="d-block">Data de Nascimento</span>
+                <span class="data-return">@Html.DisplayFor(model => model.BirthDate)</span>
+            </div>
+            <div class="pt-2">
+                <span class="d-block">CPF</span>
+                <span class="data-return">@Html.DisplayFor(model => model.Cpf)</span>
+            </div>
+        </div>
+        <div id="clients-table" class="py-5">
+            <div>
+                <span class="follow">Seguindo</span>
+            </div>
+            <div id="clients-list" class="py-4">
+                <div>
+                    <div class="client-card">
+                        <img class="logo-main-page rounded-3" src="~/Images/logo1.jpg" alt="Imagem da Loja">
+                        <span class="client-name pl-3">Nome Empresa</span>
+                    </div>
+                    <div class="client-card">
+                        <img class="logo-main-page rounded-3" src="~/Images/logo2.jpg" alt="Imagem da Loja">
+                        <span class="client-name pl-3">Nome Empresa</span>
+                    </div>
+                    <div class="client-card">
+                        <img class="logo-main-page rounded-3" src="~/Images/logo3.jpg" alt="Imagem da Loja">
+                        <span class="client-name pl-3">Nome Empresa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<!--
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+-->

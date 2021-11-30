@@ -183,4 +183,82 @@ body {
     background-color: var(--main-color) !important;
 }
 
-/*Pagina Perfil Cliente */
+/*Pagina Clientes da Empresa */
+
+#company-clients h1 {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 32px !important;
+}
+
+#company-clients img {
+    border-radius: 20px;
+}
+
+#company-clients form {
+
+}
+
+#company-clients .btn {
+    background-color: var(--primary-color) !important;
+    color: var(--light-blue);
+    transition: 500ms;
+    border: none;
+}
+
+#company-clients .btn:hover {
+    background-color: var(--main-color) !important;
+}
+
+#company-clients #clients-list span {
+    font-size: 18px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+#company-clients #clients-list .client-card {
+    padding: 32px;
+    cursor: pointer;
+}
+
+#company-clients #clients-list .client-card:nth-child(2n) {
+    background-color: var(--brilliant-blue);
+    transition: 500ms;
+}
+
+#company-clients #clients-list .client-card:nth-child(2n):hover {
+    background-color: var(--light-blue);
+}
+
+#company-clients #clients-list .client-card:nth-child(2n+1) {
+    background-color: var(--secondary-color);
+    transition: 500ms;
+}
+
+#company-clients #clients-list .client-card:nth-child(2n+1):hover {
+    background-color: var(--light-blue);
+}
+
+#company-clients .follow {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table h6{
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table span {
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table .data-return {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 600;
+}

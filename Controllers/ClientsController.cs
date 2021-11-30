@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClientConnecting.Models;
 using ClientConnecting.Services;
-using System.Threading.Tasks;
 
 namespace ClientConnecting.Controllers
 {
     public class ClientsController : Controller
     {
+        private readonly CompanyService _companyService;
         private readonly ClientService _clientService;
         private readonly ClientConnectingContext _context;
 
-        public ClientsController( ClientService clientService)
+        public ClientsController( ClientService clientService, ClientConnectingContext context, CompanyService companyService)
         {
             _clientService = clientService;
+            _context = context;
+            _companyService = companyService;
         }
 
 
@@ -147,6 +146,13 @@ namespace ClientConnecting.Controllers
         private bool ClientExists(int id)
         {
             return _context.Client.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> SimpleSearch(string name)
+        {
+            ViewData["SearchName"] = name;
+            var result = await _clientService.FindByNameAsync(name);
+            return View(result);
         }
     }
 }

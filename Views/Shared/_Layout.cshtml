@@ -5,13 +5,15 @@
     <title>ClientConnecting</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
         <nav id="header" class="navbar nav justify-content-between">
-            <a class="title-link navbar-brand">ClientConnecting</a>
+            <a class="title-link navbar-brand" href="/" style="cursor: pointer">ClientConnecting</a>
             <form class="form-inline" asp-controller="Companies" asp-action="SimpleSearch">
                 <input class="form-control mr-sm-2" type="text" name="name" placeholder="Buscar Empresas" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

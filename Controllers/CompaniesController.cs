@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClientConnecting.Models;
 using ClientConnecting.Services;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ClientConnecting.Controllers
 {
@@ -18,11 +20,12 @@ namespace ClientConnecting.Controllers
 
         private readonly ClientConnectingContext _context;
 
-        public CompaniesController(CompanyService companyService, CategoryService categoryService, ProductService productService )
+        public CompaniesController(CompanyService companyService, CategoryService categoryService, ProductService productService, ClientConnectingContext context)
         {
             _companyService = companyService;
             _categoryService = categoryService;
             _productService = productService;
+            _context = context;
         }
 
         // GET: Companies
@@ -35,12 +38,12 @@ namespace ClientConnecting.Controllers
         // GET: Companies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-/*            var products = _productService.
-            if (id == null)
-            {
-                return NotFound();
-            }
-*/
+            /*            var products = _productService.
+                        if (id == null)
+                        {
+                            return NotFound();
+                        }
+            */
             var obj = await _companyService.FindByIdAsync(id.Value);
             if (obj == null)
             {
@@ -63,10 +66,16 @@ namespace ClientConnecting.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Company company)
+        public async Task<IActionResult> Create([Bind("Id, Name, Cnpj, Address, CategoryId, Email, Password, ConfirmPassword")] Company company)
         {
-            await _companyService.InsertAsync(company);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                company.Password = BCrypt.Net.BCrypt.HashPassword(company.Password);
+                _context.Add(company);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(company);
         }
 
         // GET: Companies/Edit/5
@@ -158,6 +167,69 @@ namespace ClientConnecting.Controllers
             ViewData["SearchName"] = name;
             var result = await _companyService.FindByNameAsync(name);
             return View(result);
+        }
+
+        public async Task<IActionResult> CompanyClients(string name)
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([Bind("Email,Password")] Company company)
+        {
+            var user = await _context.Company
+                .FirstOrDefaultAsync(m => m.Email == company.Email);
+
+            if (user == null)
+            {
+                ViewBag.Message = "Usuário e/ou Senha inválidos!";
+                return View();
+            }
+
+            bool isSenhaOk = BCrypt.Net.BCrypt.Verify(company.Password, user.Password);
+
+            if (isSenhaOk)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.NameIdentifier, user.Name),
+                    new Claim(ClaimTypes.Role, user.Perfil.ToString())
+                };
+
+                var userIdentity = new ClaimsIdentity(claims, "login");
+
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+
+                var props = new AuthenticationProperties
+                {
+                    AllowRefresh = true,
+                    ExpiresUtc = DateTime.Now.ToLocalTime().AddDays(7),
+                    IsPersistent = true
+                };
+
+                await HttpContext.SignInAsync(principal, props);
+
+                return Redirect("/");
+
+            }
+
+            ViewBag.Message = "Usuário e/ou Senha inválidos!";
+            return View();
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login", "Usuarios");
         }
     }
 }

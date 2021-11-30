@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientConnecting.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ClientConnecting
 {
@@ -43,7 +44,17 @@ namespace ClientConnecting
             services.AddScoped<ClientService>();
             services.AddScoped<CategoryService>();
             services.AddScoped<ProductService>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Companies/Login/";
+                });
+
+            services.AddControllersWithViews();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
@@ -73,5 +84,7 @@ namespace ClientConnecting
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

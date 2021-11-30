@@ -31,11 +31,24 @@ namespace ClientConnecting.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "Por favor, insira um Email valido!")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Por favor, informe a senha!")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Confirme sua senha")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "É necessário confirmar sua senha.")]
+        [Compare("Password", ErrorMessage = "As senhas devem ser iguais nos dois campos.")]
+        public string ConfirmPassword { get; set; }
+
         public string ImagemLogo { get; set; }
 
         public ICollection<Client> Clients { get; set; } = new List<Client>();
 
         public ICollection<Product> Product { get; set; } = new List<Product>();
+
+        public Perfil Perfil { get; set; }
 
         public Company()
         {
@@ -57,5 +70,10 @@ namespace ClientConnecting.Models
         {
             Product.Add(product);
         }
+    }
+    public enum Perfil
+    {
+        Company,
+        Client
     }
 }

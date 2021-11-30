@@ -29,5 +29,19 @@ namespace ClientConnecting.Services
             _context.Add(obj);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Client>> FindByNameAsync(string name)
+        {
+            var result = from obj in _context.Client select obj;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                result = result.Where(x => x.Name!.Contains(name));
+
+            }
+
+
+            return await result.ToListAsync();
+        }
     }
 }
