@@ -71,8 +71,11 @@ namespace ClientConnecting.Controllers
             if (ModelState.IsValid)
             {
                 company.Password = BCrypt.Net.BCrypt.HashPassword(company.Password);
+                Random id = new Random();
+                company.Id = id.Next(200);
                 _context.Add(company);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(company);
