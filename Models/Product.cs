@@ -10,10 +10,27 @@ namespace ClientConnecting.Models
    [Table("Product")]
     public class Product
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
-        public int ProductID { get; set; }
+        public int Id { get; set; }
+        public int Code { get; set; }
         public string ProductType { get; set; }
         public string ProductDescription { get; set; }
+        public int CategoryId { get; set; }
+        public Company Company { get; set; }
 
+        public Product()
+        {
+
+        }
+
+        public Product(int id, int code, string productType, string productDescription, Company company)
+        {
+            Id = id;
+            Code = code;
+            ProductType = productType;
+            ProductDescription = productDescription;
+            Company = company;
+        }
     }
 }

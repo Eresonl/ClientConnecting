@@ -1,21 +1,55 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+:root {
+    --main-color: #5D84A6;
+    --primary-color: #224459;
+    --secondary-color: #7AA5BF;
+    --light-blue: #BDDEF2;
+    --brilliant-blue: #99E2F2;
 }
 
+.alert-message {
+    color: red;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Header */
+#header {
+    background-color: var(--main-color);
+}
+
+#header .title-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 32px !important;
+}
+
+#btn-header-content .btn {
+    background-color: var(--primary-color) !important;
+    color: var(--light-blue);
+    transition: 500ms;
+}
+
+#btn-header-content .btn:hover {
+    background-color: var(--main-color) !important;
+}
+
+#header form button {
+    background-color: var(--primary-color) !important;
+    color: var(--light-blue);
+    border: none;
+}
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #0366d6;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -262,3 +296,169 @@ ul.produtos li {
     justify-content: center;
 }
 
+/*Pagina Companies */
+
+.companies-section a {
+    text-decoration: none;
+}
+
+.card-shop {
+    border: 1px solid black;
+    border-radius: .8rem;
+    cursor: pointer;
+    transition: 700ms ease-in-out;
+    text-decoration: none;
+}
+
+    .card-shop:hover {
+        background-color: #adb5bd;
+    }
+
+.logo-main-page {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+
+/*Pagina Register */
+
+#register-background {
+    background: url(../Images/register-background.png);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+    #register-background h1 {
+        font-size: 48px;
+        color: var(--primary-color);
+    }
+
+    #register-background span {
+        font-weight: 600;
+        font-size: 24px;
+        color: var(--primary-color);
+    }
+
+    #register-background li {
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--light-blue);
+    }
+
+    #register-background .button-style {
+        width: 260px;
+        background-color: var(--primary-color);
+        color: var(--light-blue);
+        font-weight: 600;
+        border: none;
+        transition: 500ms;
+    }
+
+        #register-background .button-style:hover {
+            background-color: var(--main-color);
+        }
+
+/*Register Form Style */
+#register-form h1 {
+    color: var(--primary-color);
+}
+
+#register-form label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#register-form .btn {
+    background-color: var(--primary-color) !important;
+    color: var(--light-blue);
+    transition: 500ms;
+    font-weight: 600;
+    border: none;
+}
+
+    #register-form .btn:hover {
+        background-color: var(--main-color) !important;
+    }
+
+/*Pagina Clientes da Empresa */
+
+#company-clients h1 {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 32px !important;
+}
+
+#company-clients img {
+    border-radius: 20px;
+}
+
+#company-clients form {
+}
+
+#company-clients .btn {
+    background-color: var(--primary-color) !important;
+    color: var(--light-blue);
+    transition: 500ms;
+    border: none;
+}
+
+    #company-clients .btn:hover {
+        background-color: var(--main-color) !important;
+    }
+
+#company-clients #clients-list span {
+    font-size: 18px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+#company-clients #clients-list .client-card {
+    padding: 32px;
+    cursor: pointer;
+}
+
+    #company-clients #clients-list .client-card:nth-child(2n) {
+        background-color: var(--brilliant-blue);
+        transition: 500ms;
+    }
+
+        #company-clients #clients-list .client-card:nth-child(2n):hover {
+            background-color: var(--light-blue);
+        }
+
+    #company-clients #clients-list .client-card:nth-child(2n+1) {
+        background-color: var(--secondary-color);
+        transition: 500ms;
+    }
+
+        #company-clients #clients-list .client-card:nth-child(2n+1):hover {
+            background-color: var(--light-blue);
+        }
+
+#company-clients .follow {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table h6 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table span {
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#company-clients #client-data-table .data-return {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 600;
+}

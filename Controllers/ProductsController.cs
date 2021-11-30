@@ -6,22 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClientConnecting.Models;
+using ClientConnecting.Services;
 
 namespace ClientConnecting.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly AppDBContext _context;
-
-        public ProductsController(AppDBContext context)
+        private readonly ProductService _productService;
+        private readonly ClientConnectingContext _context;
+        public ProductsController(ProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            var list = await _productService.FindAllAsync();
+            return View(list);
         }
 
         // GET: Products/Details/5
@@ -33,7 +35,7 @@ namespace ClientConnecting.Controllers
             }
 
             var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -43,7 +45,7 @@ namespace ClientConnecting.Controllers
         }
 
         // GET: Products/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -87,7 +89,7 @@ namespace ClientConnecting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductType,ProductDescription")] Product product)
         {
-            if (id != product.ProductID)
+            if (id != product.Id)
             {
                 return NotFound();
             }
@@ -101,7 +103,7 @@ namespace ClientConnecting.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductID))
+                    if (!ProductExists(product.Id))
                     {
                         return NotFound();
                     }
@@ -118,35 +120,33 @@ namespace ClientConnecting.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductID == id);
-            if (product == null)
+            var obj = await _productService.FindByIdAsync(id.Value);
+            if(obj == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+
+            return View(obj);
         }
 
         // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
+            await _productService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.ProductID == id);
+            return _context.Product.Any(e => e.Id == id);
         }
     }
 }

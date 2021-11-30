@@ -1,0 +1,65 @@
+﻿@model ClientConnecting.Models.CompanyFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section id="register-form" class="py-5">
+    <div class="d-flex justify-content-center">
+        <h1>Registrar como Empresa</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 py-3">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Company.Name" class="control-label"></label>
+                    <input asp-for="Company.Name" class="form-control" />
+                    <span asp-validation-for="Company.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.Cnpj" class="control-label"></label>
+                    <input asp-for="Company.Cnpj" class="form-control" />
+                    <span asp-validation-for="Company.Cnpj" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.Address" class="control-label"></label>
+                    <input asp-for="Company.Address" class="form-control" />
+                    <span asp-validation-for="Company.Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.Email" class="control-label"></label>
+                    <input asp-for="Company.Email" class="form-control" />
+                    <span asp-validation-for="Company.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.ImagemLogo" class="control-label"></label>
+                    <input asp-for="Company.ImagemLogo" class="form-control" />
+                    <span asp-validation-for="Company.ImagemLogo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.CategoryId" class="control-label"></label>
+                    <select asp-for="Company.CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.Password" class="control-label"></label>
+                    <input type="password" asp-for="Company.Password" class="form-control" />
+                    <span asp-validation-for="Company.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company.ConfirmPassword" class="control-label"></label>
+                    <input type="password" asp-for="Company.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Company.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

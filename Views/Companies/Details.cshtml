@@ -1,0 +1,54 @@
+﻿@model ClientConnecting.Models.Company
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<section id="company-clients" class="container py-5">
+    <div class="col-12">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="">@Html.DisplayFor(model => model.Name)!</h1>
+            <img class="logo-main-page rounded-3" src="~/Images/@Html.DisplayFor(model => model.ImagemLogo)" alt="Imagem da Loja">
+        </div>
+        <div id="client-data-table">
+            <h6>Dados da Empresa</h6>
+            <div class="pt-2">
+                <span class="d-block">Endereço</span>
+                <span class="data-return">@Html.DisplayFor(model => model.Address)</span>
+                <span class="d-block">Email para Contato</span>
+                <span class="data-return">@Html.DisplayFor(model => model.Email)</span>
+            </div>
+        </div>
+        <div id="clients-table" class="py-5">
+            <div>
+                <span class="follow">Produtos</span>
+            </div>
+            <div id="clients-list" class="py-4">
+                <div>
+                    <div class="client-card d-flex">
+                        <img class="logo-main-page rounded-3" src="~/Images/cat-colars.png" alt="Imagem da Loja">
+                        <div class="pl-3">
+                            <span class="client-name pb-2 d-block">Coleira para Gatos</span>
+                            <p>Planejada para deixar seu melhor amigo confortável e estiloso, essa coleira é confeccionada em couro e possui fivela de aço.</p>
+                        </div>
+                    </div>
+                    <div class="client-card d-flex">
+                        <img class="logo-main-page rounded-3" src="~/Images/dog-food.jpg" alt="Imagem da Loja">
+                        <div class="pl-3">
+                            <span class="client-name pb-2 d-block">Ração Pedigree</span>
+                            <p>Alimento Super Premium feito com carnes selecionadas e ingredientes essenciais, sem transgênicos, corantes e aromas artificiais. Além disso, foi desenvolvido por especialistas em nutrição e aprovado por veterinários para fornecer toda qualidade e saúde que seu cão precisa.</p>
+                        </div>
+                    </div>
+                    <div class="client-card d-flex">
+                        <img class="logo-main-page rounded-3" src="~/Images/animal-shampoo.png" alt="Imagem da Loja">                  
+                        <div class="pl-3">
+                            <span class="client-name pb-2 d-block">Shampoo para Animais</span>
+                            <p>Seu pet de pelo curto agora tem um shampoo prático e fácil de usar, tornando o banho um momento divertido e gostoso. O Shampoo 2 em 1 limpa a pele e pelagem, além de condicionar levemente os pelos, conferindo maciez, brilho e ainda deixar um delicioso cheirinho de melância.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

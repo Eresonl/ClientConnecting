@@ -1,0 +1,47 @@
+﻿@{
+}
+
+<section id="company-clients" class="container py-5">
+    <div class="col-12">
+        <div class="d-flex flex-column align-items-center">
+            <h1 class="">Nome da Empresa</h1>
+            <img class="logo-main-page rounded-3" src="~/Images/logo2.jpg" alt="Imagem da Loja">
+        </div>
+        <div id="clients-table" class="py-5">
+            <div>
+                <form class="form-inline" asp-controller="Clients" asp-action="SimpleSearch">
+                    <input class="form-control mr-sm-2" type="text" name="name" placeholder="Buscar Clientes" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            <div id="clients-list" class="py-4">
+                <div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Vinicius</span>
+                    </div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Gabriel</span>
+                    </div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Nilce</span>
+                    </div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Carlos</span>
+                    </div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Emerson</span>
+                    </div>
+                    <div class="client-card">
+                        <span class="client-name-camp">Nome: </span>
+                        <span class="client-name">Paula</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
