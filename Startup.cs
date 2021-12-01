@@ -39,7 +39,6 @@ namespace ClientConnecting
             services.AddDbContext<ClientConnectingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ClientConnectingContext")));
 
-            services.AddScoped<SeedingService>();
             services.AddScoped<CompanyService>();
             services.AddScoped<ClientService>();
             services.AddScoped<CategoryService>();
@@ -57,12 +56,11 @@ namespace ClientConnecting
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                seedingService.Seed();
             }
             else
             {
@@ -85,6 +83,7 @@ namespace ClientConnecting
                 endpoints.MapControllerRoute(
                     name: "teste",
                     pattern: "/teste");
+
             });
         }
 
